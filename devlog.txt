@@ -69,3 +69,21 @@ Next phase:
 - Switch to better model (Sonnet 4.0/4.5) for production
 - Consider prompt engineering once quality becomes the focus
 - Could add features: research focus, URL download, batch processing
+
+=== 2025-10-28: Switch to Sonnet 4.5 ===
+
+Changed default model from Haiku 3.5 to Sonnet 4.5 for quality work.
+
+Decision: Keep it simple, just change the default. Model selection already
+available via -m flag, no need for config file complexity yet.
+
+Initial testing shows significant quality improvement:
+- Haiku 3.5: ~80 line summaries
+- Sonnet 4.5: ~254 line summaries (3x more comprehensive)
+- Much more detailed methodology, specific quotes, statistical values
+- Better structure and organization
+
+Minor note: Sonnet 4.5 includes scratchpad in output (prompt artifact).
+May want to refine prompt to exclude scratchpad from final output.
+
+Ready to evaluate quality across diverse papers and refine as needed.
