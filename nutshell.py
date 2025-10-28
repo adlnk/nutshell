@@ -62,7 +62,7 @@ Then create your reference document. Structure it logically with clear headings,
 Your final output should be a well-organized reference document that captures the essential content of the paper in a format optimized for future reference and research use."""
 
 
-def summarize_paper(pdf_path, model="claude-3-5-haiku-20241022"):
+def summarize_paper(pdf_path, model="claude-sonnet-4-5-20250929"):
     """
     Send PDF to Claude API and get summary.
 
@@ -130,8 +130,8 @@ def main():
     parser.add_argument(
         '-m', '--model',
         type=str,
-        default='claude-3-5-haiku-20241022',
-        help='Claude model to use (default: claude-3-5-haiku-20241022)'
+        default='claude-sonnet-4-5-20250929',
+        help='Claude model to use (default: claude-sonnet-4-5-20250929)'
     )
 
     args = parser.parse_args()
