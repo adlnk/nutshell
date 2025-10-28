@@ -1,0 +1,21 @@
+PROMPT CHANGELOG
+
+=== v1_baseline.txt ===
+Date: 2025-10-28
+Description: Original prompt from project inception
+Notes:
+- Includes explicit scratchpad instruction
+- Causes Claude to output planning process in final summary
+- Otherwise good structure and guidance
+
+=== v2_no_scratchpad.txt ===
+Date: 2025-10-28
+Description: Remove scratchpad instruction
+Changes from v1:
+- Removed entire "Process" section with scratchpad instruction
+- Claude 4.x models think internally without being asked
+- Should produce cleaner output without planning artifacts
+Rationale:
+- Per Claude 4 best practices, models think internally by default
+- Explicit scratchpad instruction causes unwanted output
+- Simpler prompt, cleaner results

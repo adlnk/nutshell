@@ -87,3 +87,23 @@ Minor note: Sonnet 4.5 includes scratchpad in output (prompt artifact).
 May want to refine prompt to exclude scratchpad from final output.
 
 Ready to evaluate quality across diverse papers and refine as needed.
+
+=== 2025-10-28: Prompt management infrastructure + scratchpad removal ===
+
+Set up prompt management system:
+- Created prompts/ directory with versioned prompt files
+- prompts/v1_baseline.txt: original prompt with scratchpad instruction
+- prompts/v2_no_scratchpad.txt: removed scratchpad section
+- prompts/changelog.txt: tracks changes between versions
+- Modified code to load prompts from files via -p flag
+- Default now uses v2_no_scratchpad.txt
+
+Research finding: Claude 4.x models think internally by default. The explicit
+scratchpad instruction in our prompt was causing it to output planning process.
+Solution: simply remove the scratchpad instruction. Model still plans, just
+doesn't output it.
+
+Testing confirms scratchpad removed successfully. Output now starts directly
+with reference document content, no planning artifacts.
+
+Prompt versioning infrastructure ready for iterative quality improvements.

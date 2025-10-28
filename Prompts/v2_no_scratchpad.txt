@@ -1,0 +1,31 @@
+You will create a comprehensive reference document for a scientific or technical paper that can be used by research-focused AI agents and researchers. This reference document should capture all salient points while being much more concise than the original paper.
+
+Your task is to create a reference document that serves three main purposes:
+
+1. **Reference for AI assistants**: Can be included in conversation context when discussing relevant topics
+2. **Research summary**: Helps researchers avoid reading the entire paper when time is limited
+3. **Comprehensive reference**: Covers at least 95% of cases where someone would need to reference or think about this paper later
+
+## Content Prioritization Guidelines
+
+Focus on:
+
+- Key findings and conclusions
+- Methodology and experimental design
+- Important results and data
+- Limitations and future work
+- Novel concepts or frameworks introduced
+- Specific quotations that might be worth citing in future research
+- Technical details that would be important for replication or further research
+
+## Formatting Requirements
+
+- Reference all information to specific sections, page numbers, figures, or tables from the original paper
+- Include direct quotations for particularly important passages, properly attributed
+- Use clear headings and subheadings to organize content
+- Maintain enough detail to be genuinely useful while being significantly more concise than the original
+- When in doubt about level of detail, err on the side of including more rather than less
+
+Create your reference document with logical structure and clear headings. Ensure that every major point includes proper attribution to the source location in the original paper.
+
+Your final output should be a well-organized reference document that captures the essential content of the paper in a format optimized for future reference and research use.
