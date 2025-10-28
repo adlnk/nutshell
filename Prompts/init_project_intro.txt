@@ -1,0 +1,71 @@
+YOUR ROLE:
+
+Hi Claude. Welcome to a new project I'm starting. Together, we're going to create a quick little tool that performs some useful research assistance functions. Right now, we've got a totally blank code base, empty directory, tabula rasa, terra incognita, you get the picture.
+
+I'm exploring your capacity to function as a coding assistant here, so as much as possible I'm going to give you full creative control over how this project comes together. That includes letting you have free reign to decide on a lot of the next steps for yourself: design philosophy, deciding how to implement things, building out all the different components of a good code project. It also includes designing your own working infrastructure: chosing when to record details to your own memory, when and how to manage git commits, what resources you want to create to help yourself work, etc. You'll be expected to check in with me about things, but operate with a lot of your own discretion. I'll be here to provide overall guidance and help, though - you're not alone!
+
+THE TASK:
+
+I want to create a command-line tool that performs various helper functions for using LLMs as research assistants. Right now, the working title is `nutshell`, because for now the main feature I want to create is using an LLM to summarize long research papers.
+
+The problem: I like to work with LLM assistants on a high level, which includes making sure they have access to a lot of scientific papers to reference. Those papers can be huuuuge PDF documents, though, with lots of formatting and images and figures that chew through tokens, so I can't keep the papers themselves in context the whole time. To solve that I want to create markdown summaries. Here's an example of the prompt that does that:
+
+<prompt>
+You will create a comprehensive reference document for a scientific or technical paper that can be used by research-focused AI agents and researchers. This reference document should capture all salient points while being much more concise than the original paper.
+
+<paper>
+
+</paper>
+
+<research_focus>
+
+</research_focus>
+
+Your task is to create a reference document that serves three main purposes:
+
+1. **Reference for AI assistants**: Can be included in conversation context when discussing relevant topics
+2. **Research summary**: Helps researchers avoid reading the entire paper when time is limited
+3. **Comprehensive reference**: Covers at least 95% of cases where someone would need to reference or think about this paper later
+
+## Content Prioritization Guidelines
+
+Focus especially on content related to the research focus areas provided, but also include:
+
+- Key findings and conclusions
+- Methodology and experimental design
+- Important results and data
+- Limitations and future work
+- Novel concepts or frameworks introduced
+- Specific quotations that might be worth citing in future research
+- Technical details that would be important for replication or further research
+
+## Formatting Requirements
+
+- Reference all information to specific sections, page numbers, figures, or tables from the original paper
+- Include direct quotations for particularly important passages, properly attributed
+- Use clear headings and subheadings to organize content
+- Maintain enough detail to be genuinely useful while being significantly more concise than the original
+- When in doubt about level of detail, err on the side of including more rather than less
+
+## Process
+
+First, use a scratchpad to plan your approach:
+
+<scratchpad>
+- Identify the main sections and themes of the paper
+- Note which parts are most relevant to the specified research focus
+- Plan the structure of your reference document
+- Identify key quotations and technical details to preserve
+</scratchpad>
+
+Then create your reference document. Structure it logically with clear headings, and ensure that every major point includes proper attribution to the source location in the original paper.
+
+Your final output should be a well-organized reference document that captures the essential content of the paper in a format optimized for future reference and research use. The document should be comprehensive enough that someone could understand the paper's key contributions and findings without reading the original, while still being significantly more concise and accessible.
+
+</prompt>
+
+Right now it's formatted for use on the Anthropic console, and will need to be adapted for use in our tool. But you don't need to refine the prompt itself, that will be a separate process. For now you just need to treat it as... part of the process.
+
+The end goal is a command line tool that can be run on a local file and creates a summary. You'll want to plan out your work, including starting with minimal working versions and gradually adding features and complexity. Consider good code development practices: modularity, documentation, clear organization, and many other principles of good development. 
+
+Before you begin working, we can chat about any questions you may have to clarify. You can also stop to ask me questions at any time, for any reason, including just to check in and confirm some part of your plan is okay with me. We'll establish the dynamic of our working relationship over the course of the project. Ready to begin?
