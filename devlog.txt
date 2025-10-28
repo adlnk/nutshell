@@ -1,0 +1,71 @@
+NUTSHELL DEVLOG
+
+=== 2025-10-28: Initial implementation ===
+
+Built basic working version of nutshell - CLI tool for summarizing research papers with Claude API.
+
+Current state:
+- Core functionality working: PDF in, markdown summary out
+- Using Claude 3.5 Haiku (claude-3-5-haiku-20241022) - supports PDF input, cheap for dev work
+- Tested with one paper (LLM Agents in Interaction), produced good summary
+- Modular code structure: separate functions for PDF loading, prompt creation, API calls, file I/O
+- Git repo initialized, 2 commits so far
+
+Key decisions made:
+- PDF analysis (full document) vs text extraction: chose PDF because Haiku 3.5 supports it
+  Means figures/tables/formatting preserved. Can revisit later if needed.
+- Model selection is parameterized, easy to swap for prompt engineering phase
+- Kept initial version simple: no research focus param yet, just core loop working
+
+What's working:
+- API integration solid
+- PDF handling clean
+- Output quality looks good (but only one test case so far)
+
+What's untested:
+- Different paper types (math-heavy, very long, short letters, multi-column layouts)
+- Edge cases (malformed PDFs, rate limits, network issues)
+- Prompt quality across diverse content
+- Token usage for large papers (might hit max_tokens limit)
+
+Next steps:
+- Test with diverse papers to validate robustness
+- Refine prompt based on learnings
+- Then add features (research focus param, etc)
+
+Notes:
+- API key stored in .env (gitignored)
+- Sample paper in project dir for quick testing
+- Prompt is unmodified from original - probably needs refinement after more testing
+- max_tokens set to 4096, might need adjustment for comprehensive summaries
+
+=== 2025-10-28: Infrastructure testing ===
+
+Ran comprehensive tests across 7 diverse papers:
+- 6-page bio paper with diagrams
+- 9-page AI paper
+- Math-heavy two-column physics paper
+- Social sciences experimental stats paper
+- 41-page paper with code snippets
+- 41-page figure/table-heavy paper
+- 90-page key field paper
+
+Results: ALL TESTS PASSED
+- No errors, timeouts, or truncation issues
+- PDF parsing robust across different formats
+- Consistent output size (65-106 lines, ~2.6-3.8K)
+- max_tokens=4096 is adequate
+
+Infrastructure is solid and ready for production use.
+
+Key insight: Summary length stays relatively consistent regardless of input length.
+This is actually ideal - even 90-page papers compress down to ~4K summaries.
+
+Minor issue: Filenames with special characters (smart quotes) need wildcards,
+but this is a shell escaping issue, not a tool problem.
+
+Next phase:
+- Infrastructure validated, ready to move to quality improvements
+- Switch to better model (Sonnet 4.0/4.5) for production
+- Consider prompt engineering once quality becomes the focus
+- Could add features: research focus, URL download, batch processing
