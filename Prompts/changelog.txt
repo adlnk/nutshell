@@ -19,3 +19,18 @@ Rationale:
 - Per Claude 4 best practices, models think internally by default
 - Explicit scratchpad instruction causes unwanted output
 - Simpler prompt, cleaner results
+
+=== transcribe_v1.txt ===
+Date: 2025-11-19
+Description: Full paper transcription with figure/table conversion
+Purpose: Create complete markdown transcriptions of papers
+Features:
+- Preserves all textual content verbatim
+- Converts figures/charts to detailed text descriptions + data tables
+- Converts all tables to markdown format
+- Optimizes for context efficiency (removes formatting bloat)
+- Maintains academic integrity
+Changes from draft:
+- Removed artifact-specific instructions (for claude.ai interface)
+- Removed PDF content placeholder
+- Cleaned up for API delivery

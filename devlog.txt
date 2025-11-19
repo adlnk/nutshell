@@ -133,3 +133,31 @@ Benefits:
 Installation: pip install -e . (editable mode for development)
 
 Tested successfully: command works from any location, accesses prompts correctly.
+
+=== 2025-11-19: Add transcribe feature ===
+
+Created new transcribe subcommand for full paper transcriptions.
+
+Feature: nutshell transcribe
+- Complete verbatim transcription of paper text
+- Converts figures/charts to detailed text descriptions + data tables
+- Converts all tables to markdown format
+- Higher token limit (16384) for longer transcriptions
+- Adds HTML disclaimer comment at top of output
+
+Implementation:
+- Created Prompts/transcribe_v1.txt (adapted from draft)
+- Added transcribe_paper() and save_transcription() to core.py
+- Added cmd_transcribe() and transcribe parser to cli.py
+- Updated documentation in README
+
+Key differences from summarize:
+- Preserves ALL content verbatim vs. summary
+- 16K token limit vs. 4K for summaries
+- Output suffix: _transcription.md vs. _summary.md
+- Includes disclaimer HTML comment
+
+Testing: Successfully transcribed sample paper (418 lines, 36K).
+
+Use case: Create context-optimized versions of papers for AI conversations,
+preserving all content while converting visual elements to text.
