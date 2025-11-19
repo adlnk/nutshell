@@ -107,3 +107,29 @@ Testing confirms scratchpad removed successfully. Output now starts directly
 with reference document content, no planning artifacts.
 
 Prompt versioning infrastructure ready for iterative quality improvements.
+
+=== 2025-11-19: Convert to installable package with subcommands ===
+
+Restructured project into proper Python package for system-wide installation.
+
+Package structure:
+- nutshell_pkg/ - main package directory
+  - __init__.py - package metadata
+  - cli.py - command-line interface with subcommand support
+  - core.py - core summarization functionality
+- setup.py - installation configuration
+- MANIFEST.in - ensures Prompts/ directory included in distribution
+
+Command structure:
+- Old: python nutshell.py paper.pdf
+- New: nutshell summarize paper.pdf
+
+Benefits:
+- Can run from any directory after installation
+- Cleaner command interface with subcommands
+- Extensible for future features (other subcommands can be added)
+- Proper package structure for distribution
+
+Installation: pip install -e . (editable mode for development)
+
+Tested successfully: command works from any location, accesses prompts correctly.
