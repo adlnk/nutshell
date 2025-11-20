@@ -1,0 +1,123 @@
+You are tasked with converting an academic paper from PDF format to a clean, comprehensive markdown text file.
+
+## Primary Objectives
+
+Your goal is to create a markdown version that:
+
+1. **Preserves ALL textual content**: Include every word of the paper verbatim, including abstracts, main text, appendices, acknowledgments, etc.
+
+2. **Optimizes for context efficiency**: Remove formatting bloat, styling, and visual elements that consume context without adding information
+
+3. **Converts visual information to text**: Replace all figures, charts, and images with detailed text descriptions and data tables
+
+4. **Maintains readability**: Structure the output clearly with appropriate headers and formatting
+
+## Content to Include (Everything)
+
+- Complete title and author information
+- Full abstract
+- All main text sections and subsections
+- All appendices
+- Acknowledgments
+- All tables (converted to markdown table format)
+- All figure information (converted to text descriptions and data tables)
+- Table and figure captions
+- In-text citations (you may omit the full references section to save space)
+
+## Content to Remove/Convert
+
+- **Remove**: Font styling, colors, complex formatting, page numbers, headers/footers, unnecessary whitespace and formatting artifacts
+- **Convert**: All figures/charts to detailed text descriptions plus data tables where applicable
+- **Convert**: All tables to clean markdown table format
+- **Simplify**: Mathematical equations to plain text or simple markdown where possible
+
+## Instructions for Visual Elements
+
+### For Figures and Charts:
+
+1. Provide a detailed text description of what the figure shows
+2. Include the figure caption verbatim
+3. Convert any data shown in the figure to a markdown table format
+4. For line graphs: create tables showing x,y coordinates for key data points
+5. For bar charts: create tables showing categories and their values
+6. For complex diagrams: provide detailed verbal descriptions of all components and relationships
+
+### For Tables:
+
+1. Convert all tables to standard markdown table format
+2. Preserve all data exactly as shown
+3. Include table captions
+4. If tables are too wide, consider breaking them into multiple tables or using simplified formatting
+
+## Required Output Structure
+
+Structure your markdown output as follows:
+
+- Use h1 (#) for the paper title
+- Use h2 (##) for major section headings
+- Use h3 (###) for subsections as needed
+- Match the heading structure of the original paper
+- Include a separate "Figures and Tables" section at the end with all visual elements converted to text
+
+Example structure:
+```
+# [Paper Title]
+
+[Author information]
+
+## Abstract
+[Complete abstract text]
+
+## 1. Introduction
+[Full section content...]
+
+## 2. Methods
+[Full section content...]
+
+[Continue for all sections...]
+
+## Figures and Tables
+[All visual elements converted to text format]
+```
+
+## Technical Requirements
+
+1. **Be complete**: Don't abbreviate or summarize - include everything
+2. **Maintain academic integrity**: Don't change the authors' words or meanings
+
+## Example Figure Conversion Format
+
+Convert figures like this:
+```
+### Figure 1
+
+Caption: [Original caption text]
+
+Description: [Detailed description of what the figure shows, including axes, data series, trends, etc.]
+
+Data table:
+| X Value | Series A | Series B |
+|---------|----------|----------|
+| 0       | 10       | 15       |
+| 1       | 12       | 18       |
+```
+
+Note: For turning plots into data tables, you may need to approximate values from the figure if exact values are not clear. If so, make sure to note values are approximated and those values should not be directly quoted or included in anything - they are there as a replacement for having to "see" the figure. In some cases, such as scatter plots or line plots with numerous data points, it may be impractical to describe the figure in terms of a data table (as the resulting data table would be excessively large). If so, this should be noted in the figure summary, and any numerical approximations used as reference points in the description will have to suffice.
+
+## Quality Standards
+
+Your resulting markdown should:
+- Allow a future AI to understand the complete paper without seeing the original PDF
+- Preserve all quantitative data and experimental results
+- Maintain the logical flow and structure of the original
+- Include all visual information in accessible text format
+- Be significantly more efficient for context usage than the original PDF
+
+## Final Instructions
+
+- **Be comprehensive**: Include everything from the paper
+- **Don't editorialize**: Present content exactly as the authors wrote it
+- **Focus on utility**: Create a version that's maximally useful for future AI analysis while being context-efficient
+- **Handle complexity gracefully**: For very complex figures or mathematical content, prioritize clarity and completeness over perfect formatting
+
+Begin your conversion now.
