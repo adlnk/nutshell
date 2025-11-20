@@ -190,6 +190,35 @@ def main():
     )
     summarize_parser.set_defaults(func=cmd_summarize)
 
+    # Summarise subcommand (British spelling alias)
+    summarise_parser = subparsers.add_parser(
+        'summarise',
+        help='Summarize a research paper (British spelling)'
+    )
+    summarise_parser.add_argument(
+        'pdf_path',
+        type=str,
+        help='Path or URL to PDF file to summarize'
+    )
+    summarise_parser.add_argument(
+        '-o', '--output',
+        type=str,
+        help='Output path for summary (default: <pdf_name>_summary.md)'
+    )
+    summarise_parser.add_argument(
+        '-m', '--model',
+        type=str,
+        default='sonnet',
+        help='Model to use: sonnet (default), haiku, opus, or full model ID'
+    )
+    summarise_parser.add_argument(
+        '-p', '--prompt',
+        type=str,
+        default='v2_no_scratchpad.txt',
+        help='Prompt file to use from Prompts/ (default: v2_no_scratchpad.txt)'
+    )
+    summarise_parser.set_defaults(func=cmd_summarize)
+
     # Transcribe subcommand
     transcribe_parser = subparsers.add_parser(
         'transcribe',

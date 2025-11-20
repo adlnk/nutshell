@@ -94,6 +94,25 @@ def download_pdf_from_url(url):
         print(f"Using cached PDF from: {url}")
         return cache_path
 
+    # Validate that URL points to a PDF before downloading
+    print(f"Checking URL: {url}")
+    try:
+        req = urllib.request.Request(url, method='HEAD')
+        with urllib.request.urlopen(req) as response:
+            content_type = response.headers.get('Content-Type', '').lower()
+
+            # Check if content type indicates PDF
+            if 'application/pdf' not in content_type:
+                # Also check if URL ends with .pdf as fallback
+                if not url.lower().endswith('.pdf'):
+                    raise Exception(
+                        f"URL does not appear to point to a PDF file.\n"
+                        f"Content-Type: {content_type or 'not specified'}\n"
+                        f"Expected: application/pdf"
+                    )
+    except urllib.error.URLError as e:
+        raise Exception(f"Failed to validate URL: {e}")
+
     # Download PDF
     print(f"Downloading PDF from: {url}")
     try:
