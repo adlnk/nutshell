@@ -42,17 +42,18 @@ def load_api_key():
 # Model shortname mappings
 MODEL_SHORTCUTS = {
     # Canonical versions (stable, curated)
-    'haiku': 'claude-3-5-haiku-20241022',
+    'haiku': 'claude-haiku-4-5-20251001',
     'sonnet': 'claude-sonnet-4-5-20250929',
     'opus': 'claude-3-opus-20240229',
 
     # Version-specific shortcuts
     'haiku-3.5': 'claude-3-5-haiku-20241022',
+    'haiku-4.5': 'claude-haiku-4-5-20251001',
     'sonnet-4.5': 'claude-sonnet-4-5-20250929',
     'opus-3': 'claude-3-opus-20240229',
 
     # Latest versions (may change as new models release)
-    'haiku-latest': 'claude-3-5-haiku-20241022',
+    'haiku-latest': 'claude-haiku-4-5-20251001',
     'sonnet-latest': 'claude-sonnet-4-5-20250929',
     'opus-latest': 'claude-3-opus-20240229',
 }
@@ -206,7 +207,7 @@ def summarize_paper(pdf_path, model="claude-sonnet-4-5-20250929", prompt_file="v
     return message.content[0].text, message.usage
 
 
-def transcribe_paper(pdf_path, model="claude-3-5-haiku-20241022", prompt_file="transcribe_v1.txt"):
+def transcribe_paper(pdf_path, model="claude-haiku-4-5-20251001", prompt_file="transcribe_v1.txt"):
     """
     Send PDF to Claude API and get full transcription.
 

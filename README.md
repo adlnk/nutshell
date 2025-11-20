@@ -66,13 +66,14 @@ This will create a summary in the current directory (e.g., `paper_summary.md` or
 
 **Model shortcuts:**
 ```bash
-nutshell summarize paper.pdf -m haiku        # Fast and cheap (default for testing)
+nutshell summarize paper.pdf -m haiku        # Fast and cheap (Haiku 4.5)
 nutshell summarize paper.pdf -m sonnet       # Better quality (default)
 nutshell summarize paper.pdf -m opus         # Highest quality (expensive, shows warning)
 nutshell summarize paper.pdf -m haiku-latest # Use latest Haiku version
+nutshell summarize paper.pdf -m haiku-3.5    # Use older Haiku 3.5
 ```
 
-Available shortcuts: `haiku`, `sonnet`, `opus`, `haiku-3.5`, `sonnet-4.5`, `opus-3`, `haiku-latest`, `sonnet-latest`, `opus-latest`
+Available shortcuts: `haiku`, `sonnet`, `opus`, `haiku-3.5`, `haiku-4.5`, `sonnet-4.5`, `opus-3`, `haiku-latest`, `sonnet-latest`, `opus-latest`
 
 You can also use full model IDs like `claude-3-5-haiku-20241022`.
 
@@ -123,7 +124,7 @@ The summary captures key findings, methodology, results, and other salient point
 
 ### Transcribe
 1. Loads the PDF file
-2. Sends it to Claude API with a transcription prompt (uses Haiku 3.5 by default, 16K token limit)
+2. Sends it to Claude API with a transcription prompt (uses Haiku 4.5 by default, 16K token limit)
 3. Converts all visual elements to text descriptions
 4. Adds a disclaimer comment at the top
 5. Saves the complete transcription as a markdown file
