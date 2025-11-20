@@ -5,7 +5,9 @@ Command-line interface for nutshell
 import argparse
 import sys
 from pathlib import Path
-from nutshell_pkg.core import summarize_paper, save_summary, transcribe_paper, save_transcription
+from nutshell_pkg.core import (
+    summarize_paper, save_summary, transcribe_paper, save_transcription, calculate_cost
+)
 
 
 def cmd_summarize(args):
@@ -28,9 +30,15 @@ def cmd_summarize(args):
     print(f"Using prompt: {args.prompt}")
 
     try:
-        summary = summarize_paper(pdf_path, model=args.model, prompt_file=args.prompt)
+        summary, usage = summarize_paper(pdf_path, model=args.model, prompt_file=args.prompt)
         save_summary(summary, output_path)
         print(f"✓ Summary saved to: {output_path}")
+
+        # Print usage stats
+        print(f"\nTokens: {usage.input_tokens:,} in, {usage.output_tokens:,} out")
+        cost = calculate_cost(args.model, usage.input_tokens, usage.output_tokens)
+        if cost is not None:
+            print(f"Cost: ${cost:.4f}")
     except Exception as e:
         print(f"\033[31m✗ Summarization failed:\033[0m {e}")
         sys.exit(1)
@@ -56,9 +64,15 @@ def cmd_transcribe(args):
     print(f"Using prompt: {args.prompt}")
 
     try:
-        transcription = transcribe_paper(pdf_path, model=args.model, prompt_file=args.prompt)
+        transcription, usage = transcribe_paper(pdf_path, model=args.model, prompt_file=args.prompt)
         save_transcription(transcription, output_path)
         print(f"✓ Transcription saved to: {output_path}")
+
+        # Print usage stats
+        print(f"\nTokens: {usage.input_tokens:,} in, {usage.output_tokens:,} out")
+        cost = calculate_cost(args.model, usage.input_tokens, usage.output_tokens)
+        if cost is not None:
+            print(f"Cost: ${cost:.4f}")
     except Exception as e:
         print(f"\033[31m✗ Transcription failed:\033[0m {e}")
         sys.exit(1)

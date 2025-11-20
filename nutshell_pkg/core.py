@@ -99,7 +99,7 @@ def summarize_paper(pdf_path, model="claude-sonnet-4-5-20250929", prompt_file="v
         ]
     )
 
-    return message.content[0].text
+    return message.content[0].text, message.usage
 
 
 def transcribe_paper(pdf_path, model="claude-sonnet-4-5-20250929", prompt_file="transcribe_v1.txt"):
@@ -146,7 +146,30 @@ def transcribe_paper(pdf_path, model="claude-sonnet-4-5-20250929", prompt_file="
         ]
     )
 
-    return message.content[0].text
+    return message.content[0].text, message.usage
+
+
+def calculate_cost(model, input_tokens, output_tokens):
+    """
+    Calculate cost based on model pricing.
+
+    Pricing per million tokens (as of 2025):
+    Haiku 3.5: $0.80 input, $4.00 output
+    Sonnet 4.5: $3.00 input, $15.00 output
+    """
+    pricing = {
+        'claude-3-5-haiku-20241022': (0.80, 4.00),
+        'claude-sonnet-4-5-20250929': (3.00, 15.00),
+    }
+
+    if model not in pricing:
+        return None
+
+    input_price, output_price = pricing[model]
+    input_cost = (input_tokens / 1_000_000) * input_price
+    output_cost = (output_tokens / 1_000_000) * output_price
+
+    return input_cost + output_cost
 
 
 def save_summary(summary_text, output_path):

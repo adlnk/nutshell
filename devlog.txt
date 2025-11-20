@@ -183,3 +183,21 @@ Testing: Successfully transcribed sample paper (418 lines, 36K).
 
 Use case: Create context-optimized versions of papers for AI conversations,
 preserving all content while converting visual elements to text.
+
+=== 2025-11-19: Add token usage and cost reporting ===
+
+Added automatic token/cost reporting at end of summarize and transcribe operations.
+
+Implementation:
+- Updated summarize_paper() and transcribe_paper() to return (text, usage) tuple
+- Added calculate_cost() function with current model pricing
+- Updated CLI handlers to unpack usage and display stats
+- Format: "Tokens: X,XXX in, X,XXX out" and "Cost: $X.XXXX"
+
+Pricing (per million tokens):
+- Haiku 3.5: $0.80 input, $4.00 output
+- Sonnet 4.5: $3.00 input, $15.00 output
+
+Testing note: For development/testing, use Haiku by default with -m flag.
+
+Tested: chicken.pdf with Haiku (8,219 in, 500 out, $0.0086)
