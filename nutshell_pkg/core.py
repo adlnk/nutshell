@@ -206,7 +206,7 @@ def summarize_paper(pdf_path, model="claude-sonnet-4-5-20250929", prompt_file="v
     return message.content[0].text, message.usage
 
 
-def transcribe_paper(pdf_path, model="claude-sonnet-4-5-20250929", prompt_file="transcribe_v1.txt"):
+def transcribe_paper(pdf_path, model="claude-3-5-haiku-20241022", prompt_file="transcribe_v1.txt"):
     """
     Send PDF to Claude API and get full transcription.
 

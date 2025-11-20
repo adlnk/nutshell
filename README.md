@@ -123,7 +123,7 @@ The summary captures key findings, methodology, results, and other salient point
 
 ### Transcribe
 1. Loads the PDF file
-2. Sends it to Claude API with a transcription prompt (uses Sonnet 4.5 by default, 16K token limit)
+2. Sends it to Claude API with a transcription prompt (uses Haiku 3.5 by default, 16K token limit)
 3. Converts all visual elements to text descriptions
 4. Adds a disclaimer comment at the top
 5. Saves the complete transcription as a markdown file

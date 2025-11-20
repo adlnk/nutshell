@@ -237,8 +237,8 @@ def main():
     transcribe_parser.add_argument(
         '-m', '--model',
         type=str,
-        default='sonnet',
-        help='Model to use: sonnet (default), haiku, opus, or full model ID'
+        default='haiku',
+        help='Model to use: haiku (default), sonnet, opus, or full model ID'
     )
     transcribe_parser.add_argument(
         '-p', '--prompt',
