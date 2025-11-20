@@ -27,3 +27,7 @@ Thumbs.db
 # Test outputs
 *_summary.md
 test_outputs/
+
+# Test inputs
+*.pdf
+test_inputs/

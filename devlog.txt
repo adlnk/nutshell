@@ -201,3 +201,62 @@ Pricing (per million tokens):
 Testing note: For development/testing, use Haiku by default with -m flag.
 
 Tested: chicken.pdf with Haiku (8,219 in, 500 out, $0.0086)
+
+=== 2025-11-19: Add PDF URL support with caching (dev branch) ===
+
+Added ability to process PDFs from URLs (e.g., arXiv papers).
+
+Implementation:
+- Added download_pdf_from_url() to download and cache PDFs
+- Cache location: ~/.cache/nutshell/pdfs/
+- Uses MD5 hash of URL as cache filename
+- Automatically reuses cached PDFs for same URL
+- Added extract_arxiv_id() to extract IDs from arXiv URLs for output naming
+- Updated CLI to accept URLs in addition to file paths
+- Output files use arXiv ID when available (e.g., 2402.02896_summary.md)
+
+Benefits:
+- No need to manually download papers
+- Cached downloads save bandwidth and time
+- Clean separation of cache from working directories
+- Works with arXiv and any direct PDF URL
+
+Future enhancement: Extract paper metadata (author, title) for better output naming
+
+Testing: Successfully processed https://isotropic.org/papers/chicken.pdf
+Cache works correctly on subsequent runs.
+
+=== 2025-11-19: Add model shortname system (dev branch) ===
+
+Implemented flexible model shortname system (hybrid approach).
+
+Shortcuts available:
+- Canonical: haiku, sonnet, opus (stable, curated defaults)
+- Version-specific: haiku-3.5, sonnet-4.5, opus-3
+- Latest: haiku-latest, sonnet-latest, opus-latest
+
+Mapping (current):
+- haiku → claude-3-5-haiku-20241022
+- sonnet → claude-sonnet-4-5-20250929
+- opus → claude-3-opus-20240229
+
+Implementation:
+- Added MODEL_SHORTCUTS dict in core.py
+- Added resolve_model_name() function
+- CLI resolves shortcuts before API calls
+- Full model IDs still accepted
+- Changed defaults from full IDs to 'sonnet' shortcut
+
+Benefits:
+- Easier to use (just -m haiku instead of long ID)
+- Predictable (canonical mappings documented)
+- Flexible (can use -latest for newest versions)
+- Scripts/docs stay current with shortnames
+
+Opus warning:
+- Any opus model triggers cost warning
+- User must confirm (y/N) before proceeding
+- Prevents accidental expensive API calls
+- Warning notes opus may not add value for summaries/transcripts
+
+Testing: Confirmed haiku shortcut resolves correctly, processes successfully.

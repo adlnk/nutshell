@@ -3,7 +3,10 @@ Core functionality for paper summarization
 """
 
 import base64
+import hashlib
 import os
+import re
+import urllib.request
 from pathlib import Path
 from anthropic import Anthropic
 
@@ -33,6 +36,88 @@ def load_api_key():
                 if line.startswith('ANTHROPIC_API_KEY='):
                     return line.split('=', 1)[1]
 
+    return None
+
+
+# Model shortname mappings
+MODEL_SHORTCUTS = {
+    # Canonical versions (stable, curated)
+    'haiku': 'claude-3-5-haiku-20241022',
+    'sonnet': 'claude-sonnet-4-5-20250929',
+    'opus': 'claude-3-opus-20240229',
+
+    # Version-specific shortcuts
+    'haiku-3.5': 'claude-3-5-haiku-20241022',
+    'sonnet-4.5': 'claude-sonnet-4-5-20250929',
+    'opus-3': 'claude-3-opus-20240229',
+
+    # Latest versions (may change as new models release)
+    'haiku-latest': 'claude-3-5-haiku-20241022',
+    'sonnet-latest': 'claude-sonnet-4-5-20250929',
+    'opus-latest': 'claude-3-opus-20240229',
+}
+
+
+def resolve_model_name(model_name):
+    """
+    Resolve model shortname to full model ID.
+
+    Args:
+        model_name: Either a shortname (e.g., 'haiku') or full model ID
+
+    Returns:
+        Full model ID string
+    """
+    return MODEL_SHORTCUTS.get(model_name, model_name)
+
+
+def download_pdf_from_url(url):
+    """
+    Download PDF from URL and cache it.
+
+    Args:
+        url: URL to PDF file
+
+    Returns:
+        Path to cached PDF file
+    """
+    # Create cache directory
+    cache_dir = Path.home() / '.cache' / 'nutshell' / 'pdfs'
+    cache_dir.mkdir(parents=True, exist_ok=True)
+
+    # Use hash of URL as filename to avoid duplicates
+    url_hash = hashlib.md5(url.encode()).hexdigest()
+    cache_path = cache_dir / f"{url_hash}.pdf"
+
+    # Check if already cached
+    if cache_path.exists():
+        print(f"Using cached PDF from: {url}")
+        return cache_path
+
+    # Download PDF
+    print(f"Downloading PDF from: {url}")
+    try:
+        urllib.request.urlretrieve(url, cache_path)
+        print(f"✓ Downloaded and cached")
+        return cache_path
+    except Exception as e:
+        raise Exception(f"Failed to download PDF: {e}")
+
+
+def extract_arxiv_id(url):
+    """
+    Extract arXiv ID from URL if present.
+
+    Args:
+        url: URL string
+
+    Returns:
+        arXiv ID string or None
+    """
+    # Match patterns like: arxiv.org/pdf/2402.02896 or arxiv.org/abs/2402.02896v1
+    match = re.search(r'arxiv\.org/(?:pdf|abs)/(\d+\.\d+)', url)
+    if match:
+        return match.group(1)
     return None
 
 

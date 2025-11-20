@@ -7,85 +7,105 @@ Document
 
 ## Primary Objectives
 
+
+
 Your goal is to create a markdown version that:
 
-**Preserves ALL textual content**: Include every word of the paper verbatim, including abstracts, main text, appendices, acknowledgments, etc.
+1. **Preserves ALL textual content**: Include every word of the paper verbatim, including abstracts, main text, appendices, acknowledgments, etc.
 
-**Optimizes for context efficiency**: Remove formatting bloat, styling, and visual elements that consume context without adding information
+2. **Optimizes for context efficiency**: Remove formatting bloat, styling, and visual elements that consume context without adding information
 
-**Converts visual information to text**: Replace all figures, charts, and images with detailed text descriptions and data tables
+3. **Converts visual information to text**: Replace all figures, charts, and images with detailed text descriptions and data tables
 
-**Maintains readability**: Structure the output clearly with appropriate headers and formatting
+4. **Maintains readability**: Structure the output clearly with appropriate headers and formatting
+
+
 
 ## Content to Include (Everything)
 
-Complete title and author information
 
-Full abstract
 
-All main text sections and subsections
+- Complete title and author information
 
-All appendices
+- Full abstract
 
-Acknowledgments
+- All main text sections and subsections
 
-All tables (converted to markdown table format)
+- All appendices
 
-All figure information (converted to text descriptions and data tables)
+- Acknowledgments
 
-Table and figure captions
+- All tables (converted to markdown table format)
 
-In-text citations (you may omit the full references section to save space)
+- All figure information (converted to text descriptions and data tables)
+
+- Table and figure captions
+
+- In-text citations (you may omit the full references section to save space)
+
+
 
 ## Content to Remove/Convert
 
-**Remove**: Font styling, colors, complex formatting, page numbers, headers/footers, unnecessary whitespace and formatting artifacts
 
-**Convert**: All figures/charts to detailed text descriptions plus data tables where applicable
 
-**Convert**: All tables to clean markdown table format
+- **Remove**: Font styling, colors, complex formatting, page numbers, headers/footers, unnecessary whitespace and formatting artifacts
 
-**Simplify**: Mathematical equations to plain text or simple markdown where possible
+- **Convert**: All figures/charts to detailed text descriptions plus data tables where applicable
+
+- **Convert**: All tables to clean markdown table format
+
+- **Simplify**: Mathematical equations to plain text or simple markdown where possible
+
+
 
 ## Instructions for Visual Elements
 
+
+
 ### For Figures and Charts:
 
-Provide a detailed text description of what the figure shows
+1. Provide a detailed text description of what the figure shows
 
-Include the figure caption verbatim
+2. Include the figure caption verbatim
 
-Convert any data shown in the figure to a markdown table format
+3. Convert any data shown in the figure to a markdown table format
 
-For line graphs: create tables showing x,y coordinates for key data points
+4. For line graphs: create tables showing x,y coordinates for key data points
 
-For bar charts: create tables showing categories and their values
+5. For bar charts: create tables showing categories and their values
 
-For complex diagrams: provide detailed verbal descriptions of all components and relationships
+6. For complex diagrams: provide detailed verbal descriptions of all components and relationships
+
+
 
 ### For Tables:
 
-Convert all tables to standard markdown table format
+1. Convert all tables to standard markdown table format
 
-Preserve all data exactly as shown
+2. Preserve all data exactly as shown
 
-Include table captions
+3. Include table captions
 
-If tables are too wide, consider breaking them into multiple tables or using simplified formatting
+4. If tables are too wide, consider breaking them into multiple tables or using simplified formatting
+
+
 
 ## Required Output Structure
 
+
+
 Structure your markdown output as follows:
 
-Use h1 (#) for the paper title
+- Use h1 (#) for the paper title
 
-Use h2 (##) for major section headings
+- Use h2 (##) for major section headings
 
-Use h3 (###) for subsections as needed
+- Use h3 (###) for subsections as needed
 
-Match the heading structure of the original paper
+- Match the heading structure of the original paper
 
-Include a separate "Figures and Tables" section at the end with all visual elements converted to text
+- Include a separate "Figures and Tables" section at the end with all visual elements converted to text
 
 Example structure:
 ```
@@ -110,11 +130,12 @@ Example structure:
 
 ## Technical Requirements
 
-**Use artifacts**: [Only applicable to claude.ai interface] Always put your conversion in an artifact since it will be substantial content
-**Handle length limits**: [Only applicable to claude.ai interface] If the content exceeds output limits, create multiple artifacts and clearly indicate where each part begins/ends
-**Be complete**: Don't abbreviate or summarize - include everything
-**Maintain academic integrity**: Don't change the authors' words or meanings
-**Output only the summary**: No other responses or text to the user is necessary, unless there is a problem, unexpected behavior, or issues to inform them off
+1. **Use artifacts**: [Only applicable to claude.ai interface] Always put your conversion in an artifact since it will be substantial content
+2. **Handle length limits**: [Only applicable to claude.ai interface] If the content exceeds output limits, create multiple artifacts and clearly indicate where each part begins/ends
+3. **Be complete**: Don't abbreviate or summarize - include everything
+4. **Maintain academic integrity**: Don't change the authors' words or meanings
+5. **Output only the summary**: No other responses or text to the user is necessary, unless there is a problem, unexpected behavior, or issues to inform them off
+
 ## Example Figure Conversion Format
 
 Convert figures like this:
@@ -145,8 +166,9 @@ Your resulting markdown should:
 
 ## Final Instructions
 
-**Be comprehensive**: Include everything from the paper
-**Don't editorialize**: Present content exactly as the authors wrote it
-**Focus on utility**: Create a version that's maximally useful for future AI analysis while being context-efficient
-**Handle complexity gracefully**: For very complex figures or mathematical content, prioritize clarity and completeness over perfect formatting
+- **Be comprehensive**: Include everything from the paper
+- **Don't editorialize**: Present content exactly as the authors wrote it
+- **Focus on utility**: Create a version that's maximally useful for future AI analysis while being context-efficient
+- **Handle complexity gracefully**: For very complex figures or mathematical content, prioritize clarity and completeness over perfect formatting
+
 Begin your conversion now, [for claude.ai instances:] placing the complete markdown output in an artifact.

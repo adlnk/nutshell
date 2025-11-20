@@ -40,31 +40,37 @@ The config file method is preferred because:
 
 ### Summarize a paper
 
-Basic usage:
+Basic usage (local file or URL):
 
 ```bash
 nutshell summarize paper.pdf
+nutshell summarize https://arxiv.org/pdf/2402.02896
 ```
 
-This will create `paper_summary.md` in the same directory as the PDF.
+This will create a summary in the current directory (e.g., `paper_summary.md` or `2402.02896_summary.md` for arXiv papers).
 
-Specify output location:
-
+**Model shortcuts:**
 ```bash
-nutshell summarize paper.pdf -o output/summary.md
+nutshell summarize paper.pdf -m haiku        # Fast and cheap (default for testing)
+nutshell summarize paper.pdf -m sonnet       # Better quality (default)
+nutshell summarize paper.pdf -m opus         # Highest quality (expensive, shows warning)
+nutshell summarize paper.pdf -m haiku-latest # Use latest Haiku version
 ```
 
-Use a different model:
+Available shortcuts: `haiku`, `sonnet`, `opus`, `haiku-3.5`, `sonnet-4.5`, `opus-3`, `haiku-latest`, `sonnet-latest`, `opus-latest`
 
+You can also use full model IDs like `claude-3-5-haiku-20241022`.
+
+**Other options:**
 ```bash
-nutshell summarize paper.pdf -m claude-3-5-haiku-20241022
+nutshell summarize paper.pdf -o output/summary.md  # Custom output path
+nutshell summarize paper.pdf -p v1_baseline.txt    # Different prompt variant
 ```
 
-Use a different prompt variant:
-
-```bash
-nutshell summarize paper.pdf -p v1_baseline.txt
-```
+**URL support:**
+- PDFs are downloaded and cached in `~/.cache/nutshell/pdfs/`
+- Re-using the same URL will use the cached version (no re-download)
+- arXiv URLs automatically extract paper ID for output filename
 
 ### Transcribe a paper
 
@@ -72,21 +78,16 @@ Create a full text transcription with figures converted to descriptions:
 
 ```bash
 nutshell transcribe paper.pdf
+nutshell transcribe https://arxiv.org/pdf/2402.02896
 ```
 
-This will create `paper_transcription.md` with:
+This will create a transcription (e.g., `paper_transcription.md`) with:
 - Complete verbatim text from the paper
 - Figures and images converted to detailed text descriptions
 - Tables converted to markdown format
 - An HTML comment at the top noting it's an AI-generated transcript
 
-All the same options as summarize are available:
-
-```bash
-nutshell transcribe paper.pdf -o output/transcript.md
-nutshell transcribe paper.pdf -m claude-3-5-haiku-20241022
-nutshell transcribe paper.pdf -p your_transcribe_prompt.txt
-```
+All the same options as summarize are available (model shortcuts, URLs, custom output, etc.)
 
 ### Available commands
 
