@@ -3,8 +3,37 @@ Core functionality for paper summarization
 """
 
 import base64
+import os
 from pathlib import Path
 from anthropic import Anthropic
+
+
+def load_api_key():
+    """
+    Load Anthropic API key from environment or config file.
+
+    Checks in order:
+    1. ANTHROPIC_API_KEY environment variable
+    2. ~/.config/nutshell/config file
+
+    Returns:
+        API key string or None if not found
+    """
+    # Check environment variable first
+    api_key = os.getenv('ANTHROPIC_API_KEY')
+    if api_key:
+        return api_key
+
+    # Check config file
+    config_path = Path.home() / '.config' / 'nutshell' / 'config'
+    if config_path.exists():
+        with open(config_path, 'r') as f:
+            for line in f:
+                line = line.strip()
+                if line.startswith('ANTHROPIC_API_KEY='):
+                    return line.split('=', 1)[1]
+
+    return None
 
 
 def load_pdf(pdf_path):
@@ -38,7 +67,8 @@ def summarize_paper(pdf_path, model="claude-sonnet-4-5-20250929", prompt_file="v
     Returns:
         Summary text as string
     """
-    client = Anthropic()
+    api_key = load_api_key()
+    client = Anthropic(api_key=api_key)
 
     pdf_data = load_pdf(pdf_path)
     pdf_base64 = base64.standard_b64encode(pdf_data).decode('utf-8')

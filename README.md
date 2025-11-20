@@ -18,11 +18,23 @@ cd "Research Bot"
 pip install -e .
 ```
 
-Set your Anthropic API key:
+Set your Anthropic API key (choose one method):
 
+**Option 1: Config file (recommended)**
+```bash
+mkdir -p ~/.config/nutshell
+echo "ANTHROPIC_API_KEY=your-api-key-here" > ~/.config/nutshell/config
+```
+
+**Option 2: Environment variable**
 ```bash
 export ANTHROPIC_API_KEY='your-api-key-here'
 ```
+
+The config file method is preferred because:
+- Available system-wide in all terminal sessions
+- Not stored in dotfiles that might be version controlled
+- Follows XDG Base Directory specification
 
 ## Usage
 

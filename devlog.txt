@@ -133,3 +133,25 @@ Benefits:
 Installation: pip install -e . (editable mode for development)
 
 Tested successfully: command works from any location, accesses prompts correctly.
+
+=== 2025-11-19: Add config file support for API key ===
+
+Problem: API key only available when exported in current directory, not system-wide.
+
+Solution: Implemented config file support at ~/.config/nutshell/config
+
+Implementation:
+- Added load_api_key() function in core.py
+- Checks in order: environment variable, then config file
+- Config file format: ANTHROPIC_API_KEY=<key>
+- Follows XDG Base Directory specification
+- Not typically version controlled (safer than dotfiles)
+
+Updated summarize_paper() to use load_api_key() when creating Anthropic client.
+
+Benefits:
+- Works from any directory on the system
+- Doesn't pollute dotfiles that might be shared/version controlled
+- Falls back to environment variable if config file not present
+
+Tested: Successfully ran nutshell from home directory with config file API key.
