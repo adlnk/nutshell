@@ -2,6 +2,10 @@
 
 Command-line tool for summarizing and transcribing research papers using Claude API.
 
+## Developer's Note
+
+I've been using this tool as a sandbox to play around with coding assistants like Claude Code: seeing how far into independence I can push them, what kinds of task they do well or break down with, what kinds of mistakes they tend to make, sensitivity to different kinds of prompting, etc. So a good deal of the code in here was written by Claude, with the notable exception of the prompts the tool uses for LLM calls. -AK
+
 ## Installation
 
 ### For regular use
