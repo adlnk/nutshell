@@ -4,19 +4,34 @@ Command-line tool for summarizing and transcribing research papers using Claude 
 
 ## Installation
 
-Install the package:
+### For regular use
+
+Clone and install:
 
 ```bash
+git clone https://github.com/adlnk/nutshell.git
+cd nutshell
+pip install .
+```
+
+### For development
+
+Clone, create a virtual environment, and install in editable mode:
+
+```bash
+git clone https://github.com/adlnk/nutshell.git
+cd nutshell
+python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -e .
 ```
 
-Or for development:
+With this setup:
+- Inside this project with venv active: uses editable install (changes take effect immediately)
+- Outside this project or without venv: uses stable install from main branch
+- Git hooks auto-update the global install when main branch changes (if not in venv)
 
-```bash
-git clone <repository>
-cd "Research Bot"
-pip install -e .
-```
+### API Key Setup
 
 Set your Anthropic API key (choose one method):
 
